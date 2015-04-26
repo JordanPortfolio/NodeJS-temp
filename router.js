@@ -1,12 +1,13 @@
 var Profile = require("./profile.js");
 var renderer = require("./renderer.js");
+var commonHeaders = {'Content-Type': 'text/html'};
 
 // Handle HTTP route GET / and POST / i.e. Home
 function home(request, response) {
     // if url == "/" && GET
     if (request.url === "/") {
        // show search
-       response.writeHead(200, {'Content-Type': 'text/plain'});
+       response.writeHead(200, commonHeaders);
        renderer.view("header", {}, response);
        renderer.view("search", {}, response);
        renderer.view("footer", {}, response);
@@ -20,7 +21,7 @@ function user(request, response) {
     // if url == "/...."
     var username = request.url.replace("/", "");
     if (username.length > 0) {
-       response.writeHead(200, {'Content-Type': 'text/plain'});
+       response.writeHead(200, commonHeaders);
        renderer.view("header", {}, response);
        
        // Get json from Treehouse
