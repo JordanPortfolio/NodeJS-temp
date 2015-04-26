@@ -4,18 +4,23 @@
 // 1. Create a web server
 var http = require('http');
 http.createServer(function (request, response) {
-  response.writeHead(200, {'Content-Type': 'text/plain'});
-  response.write('This is before the end\n');
-  response.end('Hello World\n');
+  homeRoute(request, response);
 }).listen(3000);
 console.log('Server is running on port 3000');
 
 // 2. Handle HTTP route GET / and POST / i.e. Home
-	// if url == "/" && GET
-	  // show search
+function homeRoute(request, response) {
+    // if url == "/" && GET
+    if (request.url === "/") {
+	   // show search
+	   response.writeHead(200, {'Content-Type': 'text/plain'});
+       response.write('Header\n');
+       response.write('Search\n');
+       response.end('Footer\n');
+     }
 	// if url == "/" && POST
 	  // redirect to /:username
-
+}
 // 3. Handle HTTP route GET /:username i.e. /chalkers
 	// if url == "/...."
 	  // get json from Treehouse
